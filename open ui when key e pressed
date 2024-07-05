@@ -1,0 +1,33 @@
+
+
+OPEN INVENTORY WHEN KEY E PRESSED
+-
+-- (References to Interface Element)
+local backpackGui = script.Parent
+local inventoryFrame = backpackGui:WaitForChild("InventoryFrame")
+
+-- make the inv invisible
+inventoryFrame.Visble = false
+
+-- feature to show/hide inv
+local function toggleInventory()
+	inventoryFrame.Visble = not inventoryFrame.Visible
+	end
+end
+
+--event to detect when key is pressed
+local userInputService = game:GetService("UserInputService")
+
+userInputService.InputBegan:Connect(function(input, gameProcessed)
+	--Checks if key pressed is "E and if it is not processed by the game
+	if input.KeyCode == Enum.KeyCode.E and not gameProcessed then
+		toggleInventory()
+	end
+end)
+
+-- (Event to detect whether you are interacting with the inventory)
+userInputService.InputBegan:Connect(function(input, gameProcessed)
+	if inventoryFrame.Visible and input.UserInputType == Enum.UserInputType.MouseButton1 then
+		gameProcessed = true
+	end
+end)
