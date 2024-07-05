@@ -14,5 +14,3 @@ Players.PlayerAdded:Connect(function(player)
 		end
 	end)
 end)
-
-tip: put the script inside ServerScriptService, then add your tools inside the script!
