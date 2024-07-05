@@ -1,0 +1,18 @@
+ROBLOX GEAR GAMEPASS SHOP
+
+local Players = game:GetService("Players")
+local mps = game:GetService("MarketplaceService")
+
+--Buy Gravity Coil
+local gravPassID = 831315893
+Players.PlayerAdded:Connect(function(player)
+	player.CharacterAdded:Connect(function(character)
+		if script:FindFirstChild("Gravity Coil") and gravPassID ~= 0 then
+			if mps:UserOwnsGamePassAsync(player.UserId, gravPassID) then
+				script:FindFirstChild("Gravity Coil"):Clone().Parent = player.Backpack
+			end
+		end
+	end)
+end)
+
+tip: put the script inside ServerScriptService, then add your tools inside the script!
