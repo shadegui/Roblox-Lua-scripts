@@ -1,0 +1,97 @@
+SETTINGS (Music, Shadow, Day/Night)
+
+SETINGS 1
+local musicBut = script.Parent.musicButton
+local shadowBut = musicBut.Parent.ShadowButton
+local timeBut = musicBut.Parent.TimeButton
+
+--musicBut Clicked
+musicBut.MouseButton1Click:Connect(function()
+	if musicBut.Text == "ON" then
+		musicBut.Text = "OFF"
+		musicBut.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	else
+		musicBut.Text = "ON"
+		musicBut.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	end
+end)
+
+--shadowBut clicked
+shadowBut.MouseButton1Click:Connect(function()
+	if shadowBut.Text == "ON" then
+		shadowBut.Text = "OFF"
+		shadowBut.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+		game.Lighting.GlobalShadows = false
+	else
+		shadowBut.Text = "ON"
+		shadowBut.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+		game.Lighting.GlobalShadows = true
+	end
+end)
+
+--timebutton clicked
+timeBut.MouseButton1Click:Connect(function()
+	if timeBut.Text == "Day" then
+		timeBut.Text = "Night"
+		game.Lighting.ClockTime = 0
+	else
+		timeBut.Text = "Day"
+		game.Lighting.ClockTime = 12
+	end
+end)
+
+SETTINGS 2
+local musicBut = script.Parent.ImageLabel.MusicButton
+local shadowBut = musicBut.Parent.ShadowButton
+local dayBut = musicBut.Parent.DayButton
+
+musicBut.Text = "✔"
+if musicBut then
+	musicBut.MouseButton1Click:Connect(function()
+		if musicBut.Text == "X" then
+			musicBut.Text = "✔"
+			for _, v in ipairs(workspace.Music:GetChildren()) do
+				if v:IsA("Sound") then
+					v:Play()
+				elseif v:IsA("Script") then
+					v.Disabled = false
+				end
+			end
+		else
+			musicBut.Text = "X"
+			for _, v in ipairs(workspace.Music:GetChildren()) do
+				if v:IsA("Sound") then
+					v:Pause()
+				elseif v:IsA("Script") then
+					v.Disabled = true
+				end
+			end
+		end
+	end)
+end
+
+shadowBut.Text = "✔"
+if shadowBut then
+	shadowBut.MouseButton1Click:Connect(function()
+		if shadowBut.Text == "X" then
+			shadowBut.Text = "✔"
+			game.Lighting.GlobalShadows = true
+		else
+			shadowBut.Text = "X"
+			game.Lighting.GlobalShadows = false
+		end
+	end)
+end
+
+dayBut.Text = "DAY"
+if dayBut then
+	dayBut.MouseButton1Click:Connect(function()
+		if dayBut.Text == "DAY" then
+			dayBut.Text = "NIGHT"
+			game.Lighting.ClockTime = 0
+		else
+			dayBut.Text = "DAY"
+			game.Lighting.ClockTime = 12
+		end
+	end)
+end
