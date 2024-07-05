@@ -1,0 +1,37 @@
+MOUSE HOVER EFFECT
+
+local button = script.Parent
+local OriSize = button.Size
+local scaleFactor = 1.1
+local TweenTime = 0.1
+
+local function ScaleUp()
+	local NewSize = UDim2.new(OriSize.X.Scale, OriSize.X.Offset * scaleFactor, OriSize.Y.Scale, OriSize.Y.Offset*scaleFactor)
+	game:GetService("TweenService"):Create(button, TweenInfo.new(TweenTime), {Size = NewSize}):Play()
+	button.Sound:Play()
+end
+
+local function ScaleDown()
+	local NewSize = UDim2.new(OriSize.X.Scale, OriSize.X.Offset * scaleFactor, OriSize.Y.Scale, OriSize.Y.Offset)
+	game:GetService("TweenService"):Create(button, TweenInfo.new(TweenTime), {Size =OriSize}):Play()
+	button.Sound:Stop()
+end
+button.MouseEnter:Connect(ScaleUp()
+button.MouseLeave:Connect(ScaleDown()
+
+--------------------------------------
+I usually use another script simpler for mouse hover effect, like this:
+local button = script.Parent
+local size = button.Size
+local scaleFactor = 1.1
+local TweenTime = 0.1
+
+button.MouseEnter:Connect(function()
+  button:TweenSize(Udim2.new(size.X.Scale * scaleFactor, 0, size.Y.Scale * scaleFactor, 0), "Out", "Sine", TweenTime, false)
+end
+
+button.MouseLeave:Connect(function()
+  button:TweenSize(size, "Out", "Sine", TweenTime, false)
+end
+
+the reason I use this because my gui use scale size, and doesnt need offset to change too.
