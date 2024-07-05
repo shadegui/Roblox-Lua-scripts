@@ -1,0 +1,36 @@
+EMOTE GUI SCRIPT
+
+note players will still using the emote even tho they walked  so how to stop the emote, they will have to press the emote button again
+
+wait(1)
+local frame=script.Parent
+local user=game.Players.LocalPlayer
+repeat wait() until user.Character local char=user.Character
+local humanoid=char:WaitForChild("Humanoid")
+local anim
+function playanim(id)
+	if char~=nil and humanoid~=nil then
+		local id="rbxassetid://"..tostring(id)
+		local oldanim=char:FindFirstChild("LocalAnimation")
+		if anim~=nil then
+			anim:Stop()
+		end
+		if oldanim~=nil then
+			if oldanim.AnimationId==id then
+				oldanim:Destroy()
+				return
+			end
+			oldanim:Destroy()
+		
+		end
+		local animation=Instance.new("Animation",char)
+		animation.Name="LocalAnimation"
+		animation.AnimationId=id
+		anim=humanoid:LoadAnimation(animation)
+		anim:Play()
+	end
+end
+local b1=frame.dance
+b1.MouseButton1Down:connect(function() playanim(b1.AnimID.Value) end)
+local b2=frame.sit
+b2.MouseButton1Down:connect(function() playanim(b2.AnimID.Value) end)
