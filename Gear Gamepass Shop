@@ -1,5 +1,10 @@
 ROBLOX GEAR GAMEPASS SHOP
 
+local ID = 194981436
+script.Parent.Activated:Connect(function()
+	game:GetService("MarketplaceService"):PromptGamePassPurchase(game.Players.LocalPlayer,ID)
+end)
+-----------------------------------------------------------------------------------------------
 local Players = game:GetService("Players")
 local mps = game:GetService("MarketplaceService")
 
