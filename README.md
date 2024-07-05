@@ -1,7 +1,8 @@
 # Roblox-Lua-scripts
 Showcasing roblox lua scripts function for game development
 
---blur and black for tweening
+--Blur and black for tweening--
+
 local BlurEffect = Instance.new("BlurEffect")
 BlurEffect.Size = 0
 BlurEffect.Parent = game.Lighting
