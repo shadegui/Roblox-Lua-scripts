@@ -2,7 +2,7 @@
 Showcasing roblox lua scripts function for game development
 
 --Blur and black for tweening--
-
+-
 local BlurEffect = Instance.new("BlurEffect")
 BlurEffect.Size = 0
 BlurEffect.Parent = game.Lighting
@@ -23,7 +23,7 @@ local UnBlur = tweenService:Create(BlurEffect ,TweenInfo.new(1,
 	Enum.EasingStyle.Linear,
 	Enum.EasingDirection.Out),
 	{Size = 0})
----------------------------------------------------------------------------------------
+
 
 --open inventory inv when key e pressed
 -
@@ -59,7 +59,7 @@ end)
 
 ------------------------------------------
 --updated press e to open inventory, with tween and effect
------------------------------------------------------------
+-
 
 --(References to Interface Element)
 local backpackGui = script.Parent
