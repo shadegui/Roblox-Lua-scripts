@@ -1,0 +1,47 @@
+SHOW PLAYER AVATAR
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local ViewportFrame = script.Parent.InventoryFrame.ViewportFrame
+local VPFcam = Instance.new("Camera")
+VPFcam.Parent = ViewportFrame
+ViewportFrame.CurrentCamera = VPFcam
+
+repeat wait(.1) until game
+
+character.Archivable = true
+local clonedChar = character:Clone()
+clonedChar.Parent = ViewportFrame
+
+VPFcam.CFrame = CFrame.new(0, 0, 0)
+clonedChar:SetPrimaryPartCFrame(CFrame.new(Vector3.new(0, 0, -9.5), Vector3.new(0, 0, 0)))
+clonedChar.Humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+
+local isDragging = false
+local lastMousePos
+
+local function updateCharacterPosition(mouseDelta)
+	local rotation = CFrame.Angles(0, -mouseDelta.X * 0.01, 0)
+	clonedChar:SetPrimaryPartCFrame(clonedChar.PrimaryPart.CFrame * rotation)
+end
+
+ViewportFrame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		isDragging = true
+		lastMousePos = input.Position
+	end
+end)
+
+ViewportFrame.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		isDragging = false
+	end
+end)
+
+ViewportFrame.InputChanged:Connect(function(input)
+	if isDragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+		local mouseDelta = input.Position - lastMousePos
+		updateCharacterPosition(mouseDelta)
+		lastMousePos = input.Position
+	end
+end)
