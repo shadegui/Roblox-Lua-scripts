@@ -1,6 +1,6 @@
 MOUSE HOVER EFFECT
 
-local button = script.Parent
+local button = script.Parent.Parent.WaitForChild("click") 
 local OriSize = button.Size
 local scaleFactor = 1.1
 local TweenTime = 0.1
