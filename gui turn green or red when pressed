@@ -1,0 +1,17 @@
+BUTTON TURN RED OR GREEN WHEN PRESSED
+
+local oriPos = script.Parent.TextLabel.Position
+local changepos = UDim2.new (0.589, 0, 0.076, 0)
+local greenbg = Color3.fromRGB(85, 255, 0)
+local redbg = script.Parent.BackgroundColor3
+local button = script.Parent.TextLabel
+
+script.Parent.MouseButton1Click:Connect(function()
+	if script.Parent.BackgroundColor3 == redbg then
+		script.Parent.BackgroundColor3 = greenbg
+		button:TweenPosition(changepos, "Out", "Sine", 0.2, false)
+	elseif script.Parent.BackgroundColor3 == greenbg then
+		script.Parent.BackgroundColor3 = redbg
+		button:TweenPosition(oriPos, "Out", "Sine", 0.2, false)
+	end
+end)
