@@ -21,7 +21,7 @@ button.MouseLeave:Connect(ScaleDown()
 
 --------------------------------------
 I usually use another script simpler for mouse hover effect, like this:
-local button = script.Parent
+local button = script.Parent.Parent.WaitForChild("Click")
 local size = button.Size
 local scaleFactor = 1.1
 local TweenTime = 0.1
